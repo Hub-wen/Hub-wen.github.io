@@ -3203,7 +3203,7 @@ body {
   background: var(--efu-background);
   color: var(--efu-fontcolor);
   font-size: 16px;
-  font-family: 得意黑, Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+  font-family: Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
   line-height: 2;
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -10373,7 +10373,7 @@ span.tagsPageCount {
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: 得意黑, Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+  font-family: Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
 }
 @media screen and (max-width: 768px) {
   #body-wrap.error #error-wrap .error-content .error-info {
@@ -13146,7 +13146,7 @@ body[data-type=music] #nav-music {
   margin-right: auto;
   width: 100%;
   font-size: 36px;
-  font-family: 得意黑, Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+  font-family: Maple Mono NF CN, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: var(--efu-fontcolor);
