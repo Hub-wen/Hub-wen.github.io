@@ -1,0 +1,733 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>2026考研数据结构代码题 - 基础 63 题（带注释版） | Aldebaran</title><noscript>開啟JavaScript才能訪問本站哦~</noscript><link rel="icon" href="/img/mine/aldebaran.ico"><link rel="stylesheet" href="/css/index.css?v=3.0.20"><link rel="canonical" href="http://example.com/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/index.html"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><!-- Feature-specific CSS--><!-- aplayer--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><!-- swiper--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css"><!-- katex--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><!-- Open Graph--><meta name="description" content="目錄 順序表  1. 在順序表 L 的第 k 個位置插入元素 x【增】 2. 刪除順序表 L 的第 k 個元素並返回其值【刪一】 3. 將順序表中的元素逆置【改：經典逆置】 4. 查找順序表中第一個值為 x 的元素的位置【查】 5. 順序表遞增有序，插入元素 x，仍保持遞增有序【查+增】 6. 用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查+改】 7.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026考研数据结构代码题 - 基础 63 题（带注释版）">
+<meta property="og:url" content="http://example.com/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/index.html">
+<meta property="og:site_name" content="Aldebaran">
+<meta property="og:description" content="目錄 順序表  1. 在順序表 L 的第 k 個位置插入元素 x【增】 2. 刪除順序表 L 的第 k 個元素並返回其值【刪一】 3. 將順序表中的元素逆置【改：經典逆置】 4. 查找順序表中第一個值為 x 的元素的位置【查】 5. 順序表遞增有序，插入元素 x，仍保持遞增有序【查+增】 6. 用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查+改】 7.">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png">
+<meta property="article:published_time" content="2025-09-11T08:20:36.000Z">
+<meta property="article:modified_time" content="2025-09-26T13:40:35.922Z">
+<meta property="article:author" content="靜燃">
+<meta property="article:tag" content="study">
+<meta property="article:tag" content="考研">
+<meta property="article:tag" content="數據結構">
+<meta property="article:tag" content="熱門">
+<meta property="article:tag" content="精選">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png"><!-- pwa--><meta name="theme-color" content="#006a73"><meta name="apple-mobile-web-app-status-bar-style" content="#006a73"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#006a73"><link rel="mask-icon" href="/img/pwa/favicon.png" color="#006a73"><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/favicon.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/favicon_16.png"><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/favicon_32.png"><link rel="bookmark" href="/img/pwa/favicon.png"><script>console.log(' %c Solitude %c ' + '3.0.20' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>let mdate = "7-7,9-18,12-13";
+mdate = (mdate.split(","));
+let ndate = new Date();
+for (let i of mdate) {
+    if (i === (ndate.getMonth()+1) + "-" + (ndate.getDate())) {
+        document.documentElement.classList.add('memorial');
+    }
+}
+</script><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+            },
+            diffDateFormat: (selector) => {
+                selector.forEach(item => {
+                    const date = new Date(item.getAttribute('datetime') || item.textContent);
+                    item.textContent = (date.getMonth() + 1).toString()+'/'+date.getDate().toString();
+                });
+            },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2023-05-06 17:18:19',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: {"limit":50,"author":"作者: 靜燃","link":"鏈結: ","source":"來源: Aldebaran","info":"著作權歸作者所有。商業轉載請聯繫作者獲得授權，非商業轉載請註明出處。"},
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: true,
+    lang: {"theme":{"dark":"已切換至深色模式","light":"已切換至淺色模式"},"copy":{"success":"複製成功","error":"複製失敗"},"backtop":"返回頂部","time":{"day":"天前","hour":"小時前","just":"剛剛","min":"分鐘前","month":"個月前"},"day":" 天","f12":"開發者模式已打開，請遵循GPL協定。","totalk":"無需刪除空行，直接輸入評論即可","barrage":{"title":"熱評"}},
+    aside: {
+        state: {
+            morning: "✨ 早上好，新的一天開始了",
+            noon: "🍲 午餐時間",
+            afternoon: "🌞 下午好",
+            night: "早點休息",
+            goodnight: "晚上 😴",
+        },
+        witty_words: ["你今天真棒","你今天真好看","加油，少年","你可以的","你一定可以的","祝你好运，陌生人"],
+        witty_comment: {
+            prefix: '好久不見，',
+            back: '歡迎再次回來，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: {"avatar":"https://gravatar.com/avatar","commentBarrage":true},
+    lightbox: 'fancybox',
+    right_menu: {"mode":{"dark":"深色模式","light":"淺色模式"},"img_error":"此圖片無法複製與下載","music":{"start":"播放音樂","stop":"暫停音樂"},"barrage":{"open":"顯示熱評","close":"關閉熱評"},"translate":true,"ctrlOriginalMenu":"按住Ctrl+右鍵可打開瀏覽器右鍵選單"},
+    translate: {"translateDelay":0,"defaultEncoding":1},
+    lure: {"jump":"额，你干什去了(っ °Д °;)っ","back":"ヾ(≧∇≦*)ゝ就知道你一直都在"},
+    expire: {"time":30,"position":"top","text_prev":"This article expired ","text_next":" day ago, if the content does not match, please contact the webmaster to update it."},
+};</script><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body id="body"><div><canvas id="universe"></canvas></div><div><div id="loading-box" onclick="preloader.endLoading();" style="zoom:1"><div class="loading-bg"><img class="loading-img nolazyload" src="/img/mine/%E5%A4%B4%E5%83%8F.jpg" alt="loading image"></div></div><script>const preloader = {
+    isLoaded: false,
+    endLoading: () => {
+        if (!preloader.isLoaded) {
+            document.getElementById('loading-box').classList.add('loaded');
+            preloader.isLoaded = true;
+            preloader.togglePaceDone();
+        }
+    },
+    initLoading: () => {
+        document.getElementById('loading-box').classList.remove('loaded');
+        preloader.isLoaded = false;
+        preloader.togglePaceDone();
+    },
+    togglePaceDone: () => {
+        document.getElementById('body').className = preloader.isLoaded ? 'pace-done' : '';
+    }
+}
+
+window.addEventListener('load', () => {
+    preloader.endLoading();
+});
+
+window.addEventListener('pjax:send', () => {
+    preloader.initLoading();
+});
+
+document.addEventListener('pjax:complete', () => {
+    preloader.endLoading();
+});
+
+setTimeout(() => {
+    preloader.endLoading();
+}, 5000);</script></div><div><div id="console"><div class="close-btn" onclick="sco.hideConsole()"><i class="solitude fas fa-xmark"></i></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments" onclick="sco.hideConsole()"><div class="card-content"><div class="author-content-item-tips">互動</div><div class="author-content-item-title">評論<a class="recent-comment-more" href="/recentcomments/" title="最近評論"><i class="solitude fas fa-circle-chevron-right"></i></a></div></div><div class="console_recentcomments"><script pjax>(async () => {
+    document.querySelector('.console-card .console_recentcomments').textContent = `加載中...`
+    const emojiReg = /<img class="tk-owo-emotion" [^>]+>/g
+    let cache = utils.saveToLocal.get('twikoo-recent-comments-console')
+    if (cache) {
+        setHtml(document.querySelector('.console-card .console_recentcomments'), cache)
+        return
+    }
+    let ls = []
+
+    await fetch('https://twikoo.aldebaran.cc/', {
+        method: "POST",
+        body: JSON.stringify({
+            "event": "GET_RECENT_COMMENTS",
+            "includeReply": true,
+            "pageSize": 6
+        }),
+        headers: {'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(async ({data}) => {
+        for (const i of data) {
+            if (i.avatar === undefined) i.avatar = 'https://gravatar.com/avatar/avatar/d615d5793929e8c7d70eab5f00f7f5f1?d=mp'
+            let title = ''
+            if (i.url) {
+                await fetch(i.url).then(res => res.text()).then(html => {
+                    const parser = new DOMParser()
+                    const doc = parser.parseFromString(html, 'text/html')
+                    title = doc.querySelector('title').innerText
+                }).catch(() => {
+                    title = i.url
+                })
+            }
+            if (title.indexOf('|') > 0) {
+                title = title.split('|')[0]
+            }
+            ls.push({
+                avatar: i.avatar,
+                nick: i.nick,
+                title: title,
+                content: i.comment,
+                url: i.url + '#' + i.id,
+                time: i.created
+            })
+        }
+        setHtml(document.querySelector('.console-card .console_recentcomments'), ls)
+        utils.saveToLocal.set('twikoo-recent-comments-console', ls, 0.2)
+    });
+
+    function setHtml(el, data) {
+        el.innerHTML = data.length !== 0 ? data.map(i => `
+            <div class="comment-card" title="${i.title}" onclick="pjax.loadUrl('${i.url}')">
+                <div class="comment-info">
+                    <img src="${i.avatar}" class="nolazyload" alt="${i.nick}">
+                    <div>
+                        <span class="comment-user">${i.nick}</span>
+                    </div>
+                    <time class="comment-time" datetime="${new Date(i.time)}"></time>
+                </div>
+                <div class="comment-content">${formatContent(i.content)}</div>
+                <div class="comment-title">
+                <i class="solitude fas fa-comment"></i>
+                ${i.title}</div>
+            </div>
+        `).join('') : `暫無評論...`
+        if (typeof utils !== 'undefined') utils.diffDateFormat(document.querySelectorAll('.comment-time'))
+        else {
+            document.addEventListener('pjax:complete', () => utils.diffDateFormat(document.querySelectorAll('.comment-time')))
+            document.addEventListener('DOMContentLoaded', () => utils.diffDateFormat(document.querySelectorAll('.comment-time')))
+        }
+    }
+
+    function formatContent(content) {
+        content = content.replace(emojiReg, '表情')
+        content = content.replace(/<\/*br>|[\s\uFEFF\xA0]+/g, '');
+        content = content.replace(/<img.*?>/g, '[圖片]');
+        content = content.replace(/<a.*?>.*?<\/a>/g, '[鏈結]');
+        content = content.replace(/<pre.*?>.*?<\/pre>/g, '[代碼]');
+        content = content.replace(/<.*?>/g, '');
+        return content
+    }
+})()</script></div></div></div><div class="console-card-group-right"><div class="console-card tags" onclick="sco.hideConsole()"><div class="card-content"><div class="author-content-item-tips">標籤</div><div class="author-content-item-title">尋找感興趣的領域</div></div><div class="card-tag-cloud"><a href="/tags/Hexo/">Hexo<sup>3</sup></a><a href="/tags/Butterfly/">Butterfly<sup>3</sup></a><a href="/tags/Fomalhaut/">Fomalhaut<sup>3</sup></a><a href="/tags/Anzhiyu/">Anzhiyu<sup>3</sup></a><a href="/tags/Solitude/">Solitude<sup>3</sup></a><a href="/tags/Aldebaran/">Aldebaran<sup>3</sup></a><a href="/tags/study/">study<sup>3</sup></a><a href="/tags/%E8%80%83%E7%A0%94/">考研<sup>3</sup></a><a href="/tags/%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/">數據結構<sup>3</sup></a><a href="/tags/%E7%86%B1%E9%96%80/">熱門<sup>2</sup></a><a href="/tags/%E7%B2%BE%E9%81%B8/">精選<sup>2</sup></a></div></div><div class="console-card history" onclick="sco.hideConsole()"><ul class="card-archive-list"><li class="item"><a href="/archives/2025/09/"><span class="date">2025/09</span><div class="count-group"><span class="count">3</span><span class="unit">篇</span></div></a></li><li class="item"><a href="/archives/2025/07/"><span class="date">2025/07</span><div class="count-group"><span class="count">1</span><span class="unit">篇</span></div></a></li><li class="item"><a href="/archives/2025/06/"><span class="date">2025/06</span><div class="count-group"><span class="count">1</span><span class="unit">篇</span></div></a></li><li class="item"><a href="/archives/2024/07/"><span class="date">2024/07</span><div class="count-group"><span class="count">1</span><span class="unit">篇</span></div></a></li><li class="item"><a href="/archives/2022/10/"><span class="date">2022/10</span><div class="count-group"><span class="count">1</span><span class="unit">篇</span></div></a></li><li class="item"><a href="/archives/"><span class="date">全部文章</span><div class="count-group"><span class="count">7</span><span class="unit">篇</span></div></a></li></ul></div></div></div><div class="button-group"><div class="console-btn-item"><span class="darkmode_switchbutton" onclick="sco.switchDarkMode()" title="晝夜切換"><i class="solitude fas fa-circle-half-stroke"></i></span></div><div class="console-btn-item" id="consoleHideAside"><span class="asideSwitch" onclick="sco.switchHideAside()" title="側邊欄顯示控制"><i class="solitude fas fa-arrows-left-right-to-line"></i></span></div><div class="console-btn-item" id="consoleKeyboard" onclick="sco.switchKeyboard()"><span class="keyboardSwitch" title="鍵盤快捷鍵"><i class="solitude fas fa-keyboard"></i></span></div><div class="console-btn-item" id="consoleMusic" onclick="sco.musicToggle()"><span class="music-switch" title="音樂開關"><i class="solitude fas fa-compact-disc"></i></span></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="sco.switchCommentBarrage()"><span class="commentBarrage"><i class="solitude fas fa-comment"></i></span></div></div><div class="console-mask" onclick="sco.hideConsole()"></div></div></div><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分類</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">標籤</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/recentcomments/"><div class="headline">評論</div><div class="length-num" id="twikoo_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div><script pjax="pjax">(async () => {
+  await fetch('https://twikoo.aldebaran.cc/', {
+    method: "POST",
+    body: JSON.stringify({
+      "event": "GET_RECENT_COMMENTS",
+      "includeReply": true,
+      "pageSize": 999
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }).then(res => res.json()).then(async ({data}) => {
+    document.querySelector('#twikoo_allcount').innerHTML = data.length
+  })
+})()</script></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span>顯示模式</span></span></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">個人站點</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://aldebaran.cc" title="主頁"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="主頁"><span class="back-menu-item-text">主頁</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.aldebaran.cc" title="博客"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="博客"><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://docs.aldebaran.cc" title="文檔"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="文檔"><span class="back-menu-item-text">文檔</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/Hub-wen" title="Github"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="Github"><span class="back-menu-item-text">Github</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">框架主題</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://hexo.io/index.html" title="Hexo"><img class="nolazyload back-menu-item-icon" src="/img/pwa/favicon.png" alt="Hexo"><span class="back-menu-item-text">Hexo</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" title="Solitude"><img class="nolazyload back-menu-item-icon" src="/img/solitude.png" alt="Solitude"><span class="back-menu-item-text">Solitude</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文庫</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>歸檔</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分類</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>標簽</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友鏈</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="solitude  fas fa-wifi"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友情鏈接</span></a></li><li><a class="site-page child" href="javascript:travelling()"><i class="solitude  fas fa-gift"></i><span>寶藏博主</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>空間</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="solitude  fas fa-music"></i><span>音樂舘</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="solitude  fas fa-tv"></i><span>追番場</span></a></li><li><a class="site-page child" href="/essay/"><i class="solitude  fas fa-feather-alt"></i><span>即刻短文</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-user"></i><span>關於</span></a></li><li><a class="site-page child" href="/gallery/"><i class="solitude  fas fa-image"></i><span>時光</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-dots"></i><span>留言板</span></a></li></ul></div></div><span class="sidebar-menu-item-title">標籤</span><div class="card-tags"><div class="card-tag-cloud"><a href="/tags/Hexo/">Hexo<sup>3</sup></a><a href="/tags/Butterfly/">Butterfly<sup>3</sup></a><a href="/tags/Fomalhaut/">Fomalhaut<sup>3</sup></a><a href="/tags/Anzhiyu/">Anzhiyu<sup>3</sup></a><a href="/tags/Solitude/">Solitude<sup>3</sup></a><a href="/tags/Aldebaran/">Aldebaran<sup>3</sup></a><a href="/tags/study/">study<sup>3</sup></a><a href="/tags/%E8%80%83%E7%A0%94/">考研<sup>3</sup></a><a href="/tags/%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/">數據結構<sup>3</sup></a><a href="/tags/%E7%86%B1%E9%96%80/">熱門<sup>2</sup></a><a href="/tags/%E7%B2%BE%E9%81%B8/">精選<sup>2</sup></a></div></div></div></div><div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷鍵</div><div class="keyboardList"><div class="keyboardItem"><div class="keyGroup"><div class="key">Shift</div><div class="key">K</div></div><div class="keyContent"><div class="content">关闭快捷菜单</div></div></div><div class="keyboardItem"><div class="keyGroup"><div class="key">Shift</div><div class="key">A</div></div><div class="keyContent"><div class="content">打开控制台</div></div></div><div class="keyboardItem"><div class="keyGroup"><div class="key">Shift</div><div class="key">M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keyboardItem"><div class="keyGroup"><div class="key">Shift</div><div class="key">L</div></div><div class="keyContent"><div class="content">打开友链</div></div></div></div></div><script>const keyboard_addKeyup = (e) => {
+    if (e.key === 'Shift') {
+        document.getElementById('keyboard-tips').classList.remove('show');
+    }
+}
+
+const keyboard_addKeydown = (e) => {
+    const keyboards = [{"name":"关闭快捷菜单","key":"K","func":"keyboard"},{"name":"打开控制台","key":"A","sco":"showConsole"},{"name":"播放/暂停音乐","key":"M","sco":"musicToggle"},{"name":"打开友链","key":"L","url":"/links/"}];
+    if (e.key === 'Shift') {
+        document.getElementById('keyboard-tips').classList.add('show');
+    }
+
+    for (let i = 0; i < keyboards.length; i++) {
+        if (keyboards[i].url) {
+            if (keyboards[i].url.startsWith('http')) {
+                if (e.key === keyboards[i].key) {
+                    window.open(keyboards[i].url);
+                }
+            } else {
+                if (e.key === keyboards[i].key) {
+                    pjax.loadUrl(keyboards[i].url);
+                }
+            }
+        } else if (keyboards[i].sco) {
+            if (e.key === keyboards[i].key) {
+                sco[keyboards[i].sco]();
+            }
+        } else if (keyboards[i].func) {
+            if (e.key === keyboards[i].key) {
+                window[keyboards[i].func]();
+            }
+        }
+    }
+}
+
+function openKeyboard() {
+
+    window.addEventListener('keyup', keyboard_addKeyup);
+
+    window.addEventListener('keydown', keyboard_addKeydown);
+}
+function closeKeyboard() {
+
+    window.removeEventListener('keyup', keyboard_addKeyup);
+
+    window.removeEventListener('keydown', keyboard_addKeydown);
+}
+
+var sco_keyboards = localStorage.getItem('keyboard') === 'true'
+if (sco_keyboards) {
+    openKeyboard();
+    let keyboard = document.getElementById('consoleKeyboard');
+    keyboard?.classList.add('on');
+}</script></div><div><div class="needEndHide" id="rightside"><div class="rs_hide"><button class="translate" type="button" title="簡繁轉換">简</button><button class="mode" type="button" title="顯示模式切換" onclick="sco.switchDarkMode()"><i class="fas fa-circle-half-stroke"></i></button><button class="aside pc" type="button" title="側邊欄" onclick="sco.switchHideAside()"><i class="fas fa-arrows-alt-h"></i></button><button class="keyboard pc" type="button" title="鍵盤快捷鍵" onclick="sco.switchKeyboard()"><i class="fas fa-keyboard"></i></button></div><div class="rs_show"><button class="config" type="button" title="擴展" onclick="document.querySelector(&quot;.rs_hide&quot;).classList.toggle(&quot;show&quot;)"><i class="fas fa-gear fa-spin"></i></button><button class="mobile toc" type="button" title="目錄" onclick="document.querySelector('#card-toc').classList.toggle('open')"><i class="fas fa-list"></i></button><button class="comment" type="button" title="評論" onclick="sco.scrollTo('post-comment')"><i class="fas fa-comment"></i></button><button class="barrage pc" type="button" title="彈" onclick="sco.switchCommentBarrage()"><span>彈</span></button><button class="top" type="button" title="返回頂部" onclick="sco.toTop()"><i class="fas fa-arrow-up"></i><span id="percent">0</span></button></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><div class="back-home-button" tabindex="-1"><i class="solitude fas fa-bars-progress"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">個人站點</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://aldebaran.cc" title="主頁"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="主頁"><span class="back-menu-item-text">主頁</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.aldebaran.cc" title="博客"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="博客"><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://docs.aldebaran.cc" title="文檔"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="文檔"><span class="back-menu-item-text">文檔</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/Hub-wen" title="Github"><img class="nolazyload back-menu-item-icon" src="/img/mine/aldebaran.png" alt="Github"><span class="back-menu-item-text">Github</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">框架主題</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://hexo.io/index.html" title="Hexo"><img class="nolazyload back-menu-item-icon" src="/img/pwa/favicon.png" alt="Hexo"><span class="back-menu-item-text">Hexo</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" title="Solitude"><img class="nolazyload back-menu-item-icon" src="/img/solitude.png" alt="Solitude"><span class="back-menu-item-text">Solitude</span></a></div></div></div></div><a href="/" title="返回博客主頁" id="site-name"><span class="title">Aldebaran</span><i class="solitude fas fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">2026考研数据结构代码题 - 基础 63 题（带注释版）</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文庫</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>歸檔</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分類</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>標簽</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友鏈</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="solitude  fas fa-wifi"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友情鏈接</span></a></li><li><a class="site-page child" href="javascript:travelling()"><i class="solitude  fas fa-gift"></i><span>寶藏博主</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>空間</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="solitude  fas fa-music"></i><span>音樂舘</span></a></li><li><a class="site-page child" href="/bangumis/"><i class="solitude  fas fa-tv"></i><span>追番場</span></a></li><li><a class="site-page child" href="/essay/"><i class="solitude  fas fa-feather-alt"></i><span>即刻短文</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-user"></i><span>關於</span></a></li><li><a class="site-page child" href="/gallery/"><i class="solitude  fas fa-image"></i><span>時光</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-dots"></i><span>留言板</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://aldebaran.cc" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="隨機一篇文章" href="javascript:void(0);"><i class="solitude fas fa-dice-d6"></i></a></div><div class="nav-button" id="nav-console"><a class="console_switchbutton" onclick="sco.showConsole()" title="主控台" href="javascript:void(0);"><label><i class="left"></i><i class="center"></i><i class="right"></i></label></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fas fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png" alt="2026考研数据结构代码题 - 基础 63 题（带注释版）"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="該文章為原創文章，注意版權協議">原創</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/study/">study</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/study/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>study</span></a><a class="post-meta__tags" href="/tags/%E8%80%83%E7%A0%94/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>考研</span></a><a class="post-meta__tags" href="/tags/%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>數據結構</span></a><a class="post-meta__tags" href="/tags/%E7%86%B1%E9%96%80/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>熱門</span></a><a class="post-meta__tags" href="/tags/%E7%B2%BE%E9%81%B8/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>精選</span></a></div></div></div></div><h1 class="post-title">2026考研数据结构代码题 - 基础 63 题（带注释版）</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="發布於 2025-09-11 16:20:36"><i class="post-meta-icon solitude fas fa-calendar-days"></i><time datetime="2025-09-11T08:20:36.000Z">2025-09-11T08:20:36.000Z</time></span><span class="post-meta-date" title="最後更新於 2025-09-26 21:40:35"><i class="post-meta-icon solitude fas fa-arrows-rotate"></i><time datetime="2025-09-26T13:40:35.922Z">2025-09-26T13:40:35.922Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fas fa-file-word" title="文章字數"></i><span class="word-count">1.6k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fas fa-clock" title="閱讀耗時"></i><span>5 分</span></span><span class="post-meta-position" title="作者IP歸屬地為China"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>China</span></span><a class="post-meta-pv" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/" title="文章熱度"><i class="post-meta-icon solitude fas fa-fire-flame-curved"></i><span id="twikoo_visitors"><i class="solitude fas fa-spinner fa-spin"></i></span></a><span class="post-meta-commentcount" title="評論數" onclick="sco.scrollTo('post-comment')"><i class="solitude fas fa-comment"></i><a href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/#post-comment"><span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span></a></span></div></div></div><div class="post-radius-bottom"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><h2 id="目錄">目錄</h2>
+<h3 id="順序表">順序表</h3>
+<ul>
+<li><a href="#1-%E5%9C%A8%E9%A0%86%E5%BA%8F%E8%A1%A8-l-%E7%9A%84%E7%AC%AC-k-%E5%80%8B%E4%BD%8D%E7%BD%AE%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0-x%E5%A2%9E">1. 在順序表 L 的第 k 個位置插入元素 x【增】</a></li>
+<li><a href="">2. 刪除順序表 L 的第 k 個元素並返回其值【刪一】</a></li>
+<li><a href="">3. 將順序表中的元素逆置【改：經典逆置】</a></li>
+<li><a href="">4. 查找順序表中第一個值為 x 的元素的位置【查】</a></li>
+<li><a href="">5. 順序表遞增有序，插入元素 x，仍保持遞增有序【查+增】</a></li>
+<li><a href="">6. 用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查+改】</a></li>
+<li><a href="">7. 刪除順序表中第一個值為 x 的元素【查+刪一】</a></li>
+<li><a href="">8. 刪除順序表中所有值為 x 的元素（拓展：刪除給定值在 s 到 t 之間的所有元素）【查+刪多】</a></li>
+</ul>
+<h3 id="鏈表">鏈表</h3>
+<ul>
+<li><a href="">1. 分別採用頭插法和尾插法建立一個帶頭結點的單鏈表</a></li>
+<li><a href="">2. 帶頭結點遞增有序單鏈表插入新結點保持有序</a></li>
+<li><a href="">3. 帶頭結點單鏈表就地逆置（O(1) 空間）</a></li>
+<li><a href="">4. 刪除帶頭結點單鏈表中第一個值為 x 的結點</a></li>
+<li><a href="">5. 刪除帶頭結點單鏈表中所有值為 x 的結點</a></li>
+<li><a href="">6. 刪除帶頭結點單鏈表最小值結點</a></li>
+<li><a href="">7. 遞增有序輸出單鏈表並釋放結點空間</a></li>
+<li><a href="">8. 將最小值結點移動到鏈表最前端</a></li>
+<li><a href="">9. 無序單鏈表實現：找最小值、奇偶判斷交換或刪除</a></li>
+<li><a href="">10. 頭插法與尾插法建立雙向鏈表</a></li>
+<li><a href="">11. 將雙向鏈表最小值移到最前端</a></li>
+<li><a href="">12. 循環單鏈表反覆輸出最小值並刪除直到空</a></li>
+</ul>
+<h3 id="棧與隊列">棧與隊列</h3>
+<ul>
+<li><a href="">1. 棧的基本操作</a></li>
+<li><a href="">2. 判斷單鏈表是否回文</a></li>
+<li><a href="">3. 判斷括號匹配</a></li>
+<li><a href="">4. 將字元 S 提到 H 之前</a></li>
+<li><a href="">5. 共享棧實現 s1、s2 入棧出棧</a></li>
+<li><a href="">6. 隊列的基本操作</a></li>
+<li><a href="">7. 循環單鏈表實現隊列入隊出隊</a></li>
+<li><a href="">8. 兩個棧模擬一個隊列</a></li>
+<li><a href="">9. 判斷字串是否回文</a></li>
+<li><a href="">10. 子串匹配</a></li>
+<li><a href="">11. 判斷鏈表 B 是否為鏈表 A 的連續子序列</a></li>
+</ul>
+<h3 id="樹">樹</h3>
+<ul>
+<li><a href="">1. 先序、中序、後序遞歸遍歷二叉樹</a></li>
+<li><a href="">2. 計算二叉樹結點個數</a></li>
+<li><a href="">3. 計算葉子結點個數</a></li>
+<li><a href="">4. 求值為 x 的層號</a></li>
+<li><a href="">5. 計算二叉樹最大深度</a></li>
+<li><a href="">6. 找出值最大的結點</a></li>
+<li><a href="">7. 查找 data 域等於 key 的結點</a></li>
+<li><a href="">8. 輸出先序第 k 個結點</a></li>
+<li><a href="">9. 左右子樹交換</a></li>
+<li><a href="">10. 判斷是否正則二叉樹</a></li>
+<li><a href="">11. 先序非遞歸遍歷</a></li>
+<li><a href="">12. 中序非遞歸遍歷</a></li>
+<li><a href="">13. 後序非遞歸遍歷</a></li>
+<li><a href="">14. 層次遍歷</a></li>
+</ul>
+<h3 id="圖">圖</h3>
+<ul>
+<li><a href="">1. 鄰接表與鄰接矩陣創建圖</a></li>
+<li><a href="">2. 鄰接表實現 BFS</a></li>
+<li><a href="">3. 鄰接矩陣實現 BFS</a></li>
+<li><a href="">4. 求距離頂點 v 最遠的結點</a></li>
+<li><a href="">5. 鄰接表實現 DFS</a></li>
+<li><a href="">6. 鄰接矩陣實現 DFS</a></li>
+<li><a href="">7. 判斷 Vi 到 Vj 是否存在路徑</a></li>
+<li><a href="">8. 輸出所有根結點</a></li>
+<li><a href="">9. 求無向圖連通分量個數</a></li>
+</ul>
+<h3 id="查找">查找</h3>
+<ul>
+<li><a href="">1. 二分查找</a></li>
+<li><a href="">2. 判斷是否二叉排序樹</a></li>
+<li><a href="">3. 尋找最大最小結點</a></li>
+<li><a href="">4. 求值為 key 的層次</a></li>
+</ul>
+<h3 id="排序">排序</h3>
+<ul>
+<li><a href="#1-%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">1. 直接插入排序 </a></li>
+<li><a href="#2-%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">2. 折半插入排序</a></li>
+<li><a href="#3-%E9%81%B8%E6%93%87%E6%8E%92%E5%BA%8F">3. 選擇排序</a></li>
+<li><a href="#4-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">4. 冒泡排序</a></li>
+<li><a href="#5-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">5. 快速排序</a></li>
+</ul>
+<h2 id="順序表-2">順序表</h2>
+<h3 id="1-在順序表-L-的第-k-個位置插入元素-x【增】">1. 在順序表 L 的第 k 個位置插入元素 x【增】</h3>
+<h3 id="2-刪除順序表-L-的第-k-個元素並返回其值【刪一】">2. 刪除順序表 L 的第 k 個元素並返回其值【刪一】</h3>
+<h3 id="3-將順序表中的元素逆置【改：經典逆置】">3. 將順序表中的元素逆置【改：經典逆置】</h3>
+<h3 id="4-查找順序表中第一個值為-x-的元素的位置【查】">4. 查找順序表中第一個值為 x 的元素的位置【查】</h3>
+<h3 id="5-順序表遞增有序，插入元素-x，仍保持遞增有序【查-增】">5. 順序表遞增有序，插入元素 x，仍保持遞增有序【查+增】</h3>
+<h3 id="6-用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查-改】">6. 用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查+改】</h3>
+<h3 id="7-刪除順序表中第一個值為-x-的元素【查-刪一】">7. 刪除順序表中第一個值為 x 的元素【查+刪一】</h3>
+<h3 id="8-刪除順序表中所有值為-x-的元素（拓展：刪除給定值在-s-到-t-之間的所有元素）【查-刪多】">8. 刪除順序表中所有值為 x 的元素（拓展：刪除給定值在 s 到 t 之間的所有元素）【查+刪多】</h3>
+<h2 id="鏈表-2">鏈表</h2>
+<h3 id="1-分別採用頭插法和尾插法建立一個帶頭結點的單鏈表">1. 分別採用頭插法和尾插法建立一個帶頭結點的單鏈表</h3>
+<h3 id="2-帶頭結點遞增有序單鏈表插入新結點保持有序">2. 帶頭結點遞增有序單鏈表插入新結點保持有序</h3>
+<h3 id="3-帶頭結點單鏈表就地逆置（O-1-空間）">3. 帶頭結點單鏈表就地逆置（O(1) 空間）</h3>
+<h3 id="4-刪除帶頭結點單鏈表中第一個值為-x-的結點">4. 刪除帶頭結點單鏈表中第一個值為 x 的結點</h3>
+<h3 id="5-刪除帶頭結點單鏈表中所有值為-x-的結點">5. 刪除帶頭結點單鏈表中所有值為 x 的結點</h3>
+<h3 id="6-刪除帶頭結點單鏈表最小值結點">6. 刪除帶頭結點單鏈表最小值結點</h3>
+<h3 id="7-遞增有序輸出單鏈表並釋放結點空間">7. 遞增有序輸出單鏈表並釋放結點空間</h3>
+<h3 id="8-將最小值結點移動到鏈表最前端">8. 將最小值結點移動到鏈表最前端</h3>
+<h3 id="9-無序單鏈表實現：找最小值、奇偶判斷交換或刪除">9. 無序單鏈表實現：找最小值、奇偶判斷交換或刪除</h3>
+<h3 id="10-頭插法與尾插法建立雙向鏈表">10. 頭插法與尾插法建立雙向鏈表</h3>
+<h3 id="11-將雙向鏈表最小值移到最前端">11. 將雙向鏈表最小值移到最前端</h3>
+<h3 id="12-循環單鏈表反覆輸出最小值並刪除直到空">12. 循環單鏈表反覆輸出最小值並刪除直到空</h3>
+<h2 id="棧與隊列-2">棧與隊列</h2>
+<h3 id="1-棧的基本操作">1. 棧的基本操作</h3>
+<h3 id="2-判斷單鏈表是否回文">2. 判斷單鏈表是否回文</h3>
+<h3 id="3-判斷括號匹配">3. 判斷括號匹配</h3>
+<h3 id="4-將字元-S-提到-H-之前">4. 將字元 S 提到 H 之前</h3>
+<h3 id="5-共享棧實現-s1、s2-入棧出棧">5. 共享棧實現 s1、s2 入棧出棧</h3>
+<h3 id="6-隊列的基本操作">6. 隊列的基本操作</h3>
+<h3 id="7-循環單鏈表實現隊列入隊出隊">7. 循環單鏈表實現隊列入隊出隊</h3>
+<h3 id="8-兩個棧模擬一個隊列">8. 兩個棧模擬一個隊列</h3>
+<h3 id="9-判斷字串是否回文">9. 判斷字串是否回文</h3>
+<h3 id="10-子串匹配">10. 子串匹配</h3>
+<h3 id="11-判斷鏈表-B-是否為鏈表-A-的連續子序列">11. 判斷鏈表 B 是否為鏈表 A 的連續子序列</h3>
+<h2 id="樹-2">樹</h2>
+<h3 id="1-先序、中序、後序遞歸遍歷二叉樹">1. 先序、中序、後序遞歸遍歷二叉樹</h3>
+<h3 id="2-計算二叉樹結點個數">2. 計算二叉樹結點個數</h3>
+<h3 id="3-計算葉子結點個數">3. 計算葉子結點個數</h3>
+<h3 id="4-求值為-x-的層號">4. 求值為 x 的層號</h3>
+<h3 id="5-計算二叉樹最大深度">5. 計算二叉樹最大深度</h3>
+<h3 id="6-找出值最大的結點">6. 找出值最大的結點</h3>
+<h3 id="7-查找-data-域等於-key-的結點">7. 查找 data 域等於 key 的結點</h3>
+<h3 id="8-輸出先序第-k-個結點">8. 輸出先序第 k 個結點</h3>
+<h3 id="9-左右子樹交換">9. 左右子樹交換</h3>
+<h3 id="10-判斷是否正則二叉樹">10. 判斷是否正則二叉樹</h3>
+<h3 id="11-先序非遞歸遍歷">11. 先序非遞歸遍歷</h3>
+<h3 id="12-中序非遞歸遍歷">12. 中序非遞歸遍歷</h3>
+<h3 id="13-後序非遞歸遍歷">13. 後序非遞歸遍歷</h3>
+<h3 id="14-層次遍歷">14. 層次遍歷</h3>
+<h2 id="圖-2">圖</h2>
+<h3 id="1-鄰接表與鄰接矩陣創建圖">1. 鄰接表與鄰接矩陣創建圖</h3>
+<h3 id="2-鄰接表實現-BFS">2. 鄰接表實現 BFS</h3>
+<h3 id="3-鄰接矩陣實現-BFS">3. 鄰接矩陣實現 BFS</h3>
+<h3 id="4-求距離頂點-v-最遠的結點">4. 求距離頂點 v 最遠的結點</h3>
+<h3 id="5-鄰接表實現-DFS">5. 鄰接表實現 DFS</h3>
+<h3 id="6-鄰接矩陣實現-DFS">6. 鄰接矩陣實現 DFS</h3>
+<h3 id="7-判斷-Vi-到-Vj-是否存在路徑">7. 判斷 Vi 到 Vj 是否存在路徑</h3>
+<h3 id="8-輸出所有根結點">8. 輸出所有根結點</h3>
+<h3 id="9-求無向圖連通分量個數">9. 求無向圖連通分量個數</h3>
+<h2 id="查找-2">查找</h2>
+<h3 id="1-二分查找">1. 二分查找</h3>
+<h3 id="2-判斷是否二叉排序樹">2. 判斷是否二叉排序樹</h3>
+<h3 id="3-尋找最大最小結點">3. 尋找最大最小結點</h3>
+<h3 id="4-求值為-key-的層次">4. 求值為 key 的層次</h3>
+<h2 id="排序-2">排序</h2>
+<h3 id="1-直接插入排序">1. 直接插入排序</h3>
+<h3 id="2-折半插入排序">2. 折半插入排序</h3>
+<h3 id="3-選擇排序">3. 選擇排序</h3>
+<h3 id="4-冒泡排序">4. 冒泡排序</h3>
+<h3 id="5-快速排序">5. 快速排序</h3>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><div class="post-copyright__author_img"><img class="post-copyright__author_img_front" src="/img/mine/%E5%A4%B4%E5%83%8F.jpg"></div><div class="post-copyright__author_name">靜燃</div><div class="post-copyright__author_desc">暗夜所指，星辰將至</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div><div class="post-reward"><div class="reward-button" title="贊助作者" onclick="AddRewardMask()"><i class="solitude fas fa-heart"></i>贊助作者</div><div class="reward-main"><ul class="reward-all"><span class="reward-title">感谢您的赞赏</span><ul class="reward-group"><li class="reward-item"><a target="_blank" rel="noopener" href="https://github.com/sponsors/everfu"><img class="post-qr-code-img nolazyload" src="https://s3.qjqq.cn/47/661ba900c4bc1.webp!color" alt="Github Sponsor" style="border-color: var(--efu-black)"></a><div class="post-qr-code-desc">Github Sponsor</div></li></ul><a class="reward-main-btn" href="/about/"><div class="reward-text">讚賞名單</div><div class="reward-dec">由于您的支持，我才能够实现写作的价值。</div></a></ul></div></div><script>function RemoveRewardMask() {
+    let rewardMainElements = document.querySelectorAll(".reward-main");
+    let quitBoxElement = document.querySelector("#quit-box");
+
+    rewardMainElements.forEach(element => {
+        element.style.display = "none";
+    });
+
+    if (quitBoxElement) {
+        quitBoxElement.style.display = "none";
+    }
+}
+
+function AddRewardMask() {
+    let rewardMainElements = document.querySelectorAll(".reward-main");
+    let quitBoxElement = document.querySelector("#quit-box");
+
+    rewardMainElements.forEach(element => {
+        element.style.display = "flex";
+    });
+
+    if (quitBoxElement) {
+        quitBoxElement.style.display = "flex";
+    }
+}</script><div class="reward-link mode"><a class="reward-link-button" href="/atom.xml"><i class="solitude fas fa-seedling"></i>訂閱</a></div></div></div><div class="social-share"></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原創文章，採用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0</a>協議，完整轉載請註明來自<a href="/">Aldebaran</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/study/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>study<span class="tagsPageCount">3</span></span></a><a class="post-meta__tags" href="/tags/%E8%80%83%E7%A0%94/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>考研<span class="tagsPageCount">3</span></span></a><a class="post-meta__tags" href="/tags/%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>數據結構<span class="tagsPageCount">3</span></span></a><a class="post-meta__tags" href="/tags/%E7%86%B1%E9%96%80/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>熱門<span class="tagsPageCount">2</span></span></a><a class="post-meta__tags" href="/tags/%E7%B2%BE%E9%81%B8/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>精選<span class="tagsPageCount">2</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">2026考研数据结构代码题 - 基础 63 题（带注释版）</div></div></a></div><div class="next-post pull-right"><a href="/Hexo-%E5%BB%BA%E7%AB%99%E6%AD%B7%E7%A8%8B/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo建站歷程(hexo &amp;&amp; Solitude)</div></div></a></div></nav>
+        <div class="relatedPosts">
+            <div class="headline">
+                <i class="solitude fas fa-star"></i>
+                <span>喜歡這篇的人也看了</span>
+                <div class="relatedPosts-link">
+                    <a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">隨便逛逛</a>
+                </div>
+            </div>
+            <div class="relatedPosts-list">
+            <div>
+                <a href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/" title="2026考研数据结构代码题 - 基础 63 题（带注释版）">
+                    <img class="cover" src= "" data-lazy-src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png" alt="cover">
+                    <div class="content is-center">
+                        <div class="title">2026考研数据结构代码题 - 基础 63 题（带注释版）</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="/study-c/" title="C语言基础">
+                    <img class="cover" src= "" data-lazy-src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241116276.png" alt="cover">
+                    <div class="content is-center">
+                        <div class="title">C语言基础</div>
+                    </div>
+                </a>
+            </div>
+            </div>
+        </div><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comment"></i><span> 評論</span><span class="count"> (<span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span>)</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="top-group"><div class="sayhi" id="sayhi" onclick="sco.changeWittyWord()"></div></div></div><div class="avatar"><img alt="頭像" src="/img/mine/头像.jpg"></div><div class="description">用博客记录成长，探索未知领域，解锁新技能，汲取知识养分，与更好的自己不期而遇。</div><div class="bottom-group"><span class="left"><div class="name">靜燃</div><div class="desc">成長、追求、行動、進取、熱愛、分享</div></span><div class="social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/Hub-wen" title="Github"><i class="solitude  fab fa-github"></i></a><a class="social-icon" target="_blank" rel="noopener" href="https://space.bilibili.com/694124492" title="Bilibili"><i class="solitude  fab fa-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fas fa-bars"></i><span>文章目錄</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E9%8C%84"><span class="toc-text">目錄</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A0%86%E5%BA%8F%E8%A1%A8"><span class="toc-text">順序表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%8F%88%E8%A1%A8"><span class="toc-text">鏈表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%A7%E8%88%87%E9%9A%8A%E5%88%97"><span class="toc-text">棧與隊列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%B9"><span class="toc-text">樹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%96"><span class="toc-text">圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-text">查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-text">排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A0%86%E5%BA%8F%E8%A1%A8-2"><span class="toc-text">順序表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9C%A8%E9%A0%86%E5%BA%8F%E8%A1%A8-L-%E7%9A%84%E7%AC%AC-k-%E5%80%8B%E4%BD%8D%E7%BD%AE%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0-x%E3%80%90%E5%A2%9E%E3%80%91"><span class="toc-text">1. 在順序表 L 的第 k 個位置插入元素 x【增】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%AA%E9%99%A4%E9%A0%86%E5%BA%8F%E8%A1%A8-L-%E7%9A%84%E7%AC%AC-k-%E5%80%8B%E5%85%83%E7%B4%A0%E4%B8%A6%E8%BF%94%E5%9B%9E%E5%85%B6%E5%80%BC%E3%80%90%E5%88%AA%E4%B8%80%E3%80%91"><span class="toc-text">2. 刪除順序表 L 的第 k 個元素並返回其值【刪一】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B0%87%E9%A0%86%E5%BA%8F%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%E9%80%86%E7%BD%AE%E3%80%90%E6%94%B9%EF%BC%9A%E7%B6%93%E5%85%B8%E9%80%86%E7%BD%AE%E3%80%91"><span class="toc-text">3. 將順序表中的元素逆置【改：經典逆置】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9F%A5%E6%89%BE%E9%A0%86%E5%BA%8F%E8%A1%A8%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%80%8B%E5%80%BC%E7%82%BA-x-%E7%9A%84%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE%E3%80%90%E6%9F%A5%E3%80%91"><span class="toc-text">4. 查找順序表中第一個值為 x 的元素的位置【查】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%A0%86%E5%BA%8F%E8%A1%A8%E9%81%9E%E5%A2%9E%E6%9C%89%E5%BA%8F%EF%BC%8C%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0-x%EF%BC%8C%E4%BB%8D%E4%BF%9D%E6%8C%81%E9%81%9E%E5%A2%9E%E6%9C%89%E5%BA%8F%E3%80%90%E6%9F%A5-%E5%A2%9E%E3%80%91"><span class="toc-text">5. 順序表遞增有序，插入元素 x，仍保持遞增有序【查+增】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%94%A8%E9%A0%86%E5%BA%8F%E8%A1%A8%E6%9C%80%E5%BE%8C%E4%B8%80%E5%80%8B%E5%85%83%E7%B4%A0%E8%A6%86%E8%93%8B%E6%95%B4%E5%80%8B%E9%A0%86%E5%BA%8F%E8%A1%A8%E4%B8%AD%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0%EF%BC%88%E8%8B%A5%E6%9C%89%E5%A4%9A%E5%80%8B%E5%89%87%E9%81%B8%E5%8F%96%E7%AC%AC%E4%B8%80%E5%80%8B%EF%BC%89%EF%BC%8C%E4%B8%A6%E8%BF%94%E5%9B%9E%E8%A9%B2%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0%E3%80%90%E6%9F%A5-%E6%94%B9%E3%80%91"><span class="toc-text">6. 用順序表最後一個元素覆蓋整個順序表中最小元素（若有多個則選取第一個），並返回該最小元素【查+改】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%88%AA%E9%99%A4%E9%A0%86%E5%BA%8F%E8%A1%A8%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%80%8B%E5%80%BC%E7%82%BA-x-%E7%9A%84%E5%85%83%E7%B4%A0%E3%80%90%E6%9F%A5-%E5%88%AA%E4%B8%80%E3%80%91"><span class="toc-text">7. 刪除順序表中第一個值為 x 的元素【查+刪一】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%88%AA%E9%99%A4%E9%A0%86%E5%BA%8F%E8%A1%A8%E4%B8%AD%E6%89%80%E6%9C%89%E5%80%BC%E7%82%BA-x-%E7%9A%84%E5%85%83%E7%B4%A0%EF%BC%88%E6%8B%93%E5%B1%95%EF%BC%9A%E5%88%AA%E9%99%A4%E7%B5%A6%E5%AE%9A%E5%80%BC%E5%9C%A8-s-%E5%88%B0-t-%E4%B9%8B%E9%96%93%E7%9A%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%EF%BC%89%E3%80%90%E6%9F%A5-%E5%88%AA%E5%A4%9A%E3%80%91"><span class="toc-text">8. 刪除順序表中所有值為 x 的元素（拓展：刪除給定值在 s 到 t 之間的所有元素）【查+刪多】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%8F%88%E8%A1%A8-2"><span class="toc-text">鏈表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%86%E5%88%A5%E6%8E%A1%E7%94%A8%E9%A0%AD%E6%8F%92%E6%B3%95%E5%92%8C%E5%B0%BE%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8B%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E7%9A%84%E5%96%AE%E9%8F%88%E8%A1%A8"><span class="toc-text">1. 分別採用頭插法和尾插法建立一個帶頭結點的單鏈表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E9%81%9E%E5%A2%9E%E6%9C%89%E5%BA%8F%E5%96%AE%E9%8F%88%E8%A1%A8%E6%8F%92%E5%85%A5%E6%96%B0%E7%B5%90%E9%BB%9E%E4%BF%9D%E6%8C%81%E6%9C%89%E5%BA%8F"><span class="toc-text">2. 帶頭結點遞增有序單鏈表插入新結點保持有序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E5%96%AE%E9%8F%88%E8%A1%A8%E5%B0%B1%E5%9C%B0%E9%80%86%E7%BD%AE%EF%BC%88O-1-%E7%A9%BA%E9%96%93%EF%BC%89"><span class="toc-text">3. 帶頭結點單鏈表就地逆置（O(1) 空間）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%AA%E9%99%A4%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E5%96%AE%E9%8F%88%E8%A1%A8%E4%B8%AD%E7%AC%AC%E4%B8%80%E5%80%8B%E5%80%BC%E7%82%BA-x-%E7%9A%84%E7%B5%90%E9%BB%9E"><span class="toc-text">4. 刪除帶頭結點單鏈表中第一個值為 x 的結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%AA%E9%99%A4%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E5%96%AE%E9%8F%88%E8%A1%A8%E4%B8%AD%E6%89%80%E6%9C%89%E5%80%BC%E7%82%BA-x-%E7%9A%84%E7%B5%90%E9%BB%9E"><span class="toc-text">5. 刪除帶頭結點單鏈表中所有值為 x 的結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%88%AA%E9%99%A4%E5%B8%B6%E9%A0%AD%E7%B5%90%E9%BB%9E%E5%96%AE%E9%8F%88%E8%A1%A8%E6%9C%80%E5%B0%8F%E5%80%BC%E7%B5%90%E9%BB%9E"><span class="toc-text">6. 刪除帶頭結點單鏈表最小值結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E9%81%9E%E5%A2%9E%E6%9C%89%E5%BA%8F%E8%BC%B8%E5%87%BA%E5%96%AE%E9%8F%88%E8%A1%A8%E4%B8%A6%E9%87%8B%E6%94%BE%E7%B5%90%E9%BB%9E%E7%A9%BA%E9%96%93"><span class="toc-text">7. 遞增有序輸出單鏈表並釋放結點空間</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%B0%87%E6%9C%80%E5%B0%8F%E5%80%BC%E7%B5%90%E9%BB%9E%E7%A7%BB%E5%8B%95%E5%88%B0%E9%8F%88%E8%A1%A8%E6%9C%80%E5%89%8D%E7%AB%AF"><span class="toc-text">8. 將最小值結點移動到鏈表最前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E7%84%A1%E5%BA%8F%E5%96%AE%E9%8F%88%E8%A1%A8%E5%AF%A6%E7%8F%BE%EF%BC%9A%E6%89%BE%E6%9C%80%E5%B0%8F%E5%80%BC%E3%80%81%E5%A5%87%E5%81%B6%E5%88%A4%E6%96%B7%E4%BA%A4%E6%8F%9B%E6%88%96%E5%88%AA%E9%99%A4"><span class="toc-text">9. 無序單鏈表實現：找最小值、奇偶判斷交換或刪除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E9%A0%AD%E6%8F%92%E6%B3%95%E8%88%87%E5%B0%BE%E6%8F%92%E6%B3%95%E5%BB%BA%E7%AB%8B%E9%9B%99%E5%90%91%E9%8F%88%E8%A1%A8"><span class="toc-text">10. 頭插法與尾插法建立雙向鏈表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%B0%87%E9%9B%99%E5%90%91%E9%8F%88%E8%A1%A8%E6%9C%80%E5%B0%8F%E5%80%BC%E7%A7%BB%E5%88%B0%E6%9C%80%E5%89%8D%E7%AB%AF"><span class="toc-text">11. 將雙向鏈表最小值移到最前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E5%BE%AA%E7%92%B0%E5%96%AE%E9%8F%88%E8%A1%A8%E5%8F%8D%E8%A6%86%E8%BC%B8%E5%87%BA%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B8%A6%E5%88%AA%E9%99%A4%E7%9B%B4%E5%88%B0%E7%A9%BA"><span class="toc-text">12. 循環單鏈表反覆輸出最小值並刪除直到空</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%A7%E8%88%87%E9%9A%8A%E5%88%97-2"><span class="toc-text">棧與隊列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A3%A7%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">1. 棧的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A4%E6%96%B7%E5%96%AE%E9%8F%88%E8%A1%A8%E6%98%AF%E5%90%A6%E5%9B%9E%E6%96%87"><span class="toc-text">2. 判斷單鏈表是否回文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A4%E6%96%B7%E6%8B%AC%E8%99%9F%E5%8C%B9%E9%85%8D"><span class="toc-text">3. 判斷括號匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%87%E5%AD%97%E5%85%83-S-%E6%8F%90%E5%88%B0-H-%E4%B9%8B%E5%89%8D"><span class="toc-text">4. 將字元 S 提到 H 之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%85%B1%E4%BA%AB%E6%A3%A7%E5%AF%A6%E7%8F%BE-s1%E3%80%81s2-%E5%85%A5%E6%A3%A7%E5%87%BA%E6%A3%A7"><span class="toc-text">5. 共享棧實現 s1、s2 入棧出棧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%9A%8A%E5%88%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">6. 隊列的基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%BE%AA%E7%92%B0%E5%96%AE%E9%8F%88%E8%A1%A8%E5%AF%A6%E7%8F%BE%E9%9A%8A%E5%88%97%E5%85%A5%E9%9A%8A%E5%87%BA%E9%9A%8A"><span class="toc-text">7. 循環單鏈表實現隊列入隊出隊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%85%A9%E5%80%8B%E6%A3%A7%E6%A8%A1%E6%93%AC%E4%B8%80%E5%80%8B%E9%9A%8A%E5%88%97"><span class="toc-text">8. 兩個棧模擬一個隊列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%88%A4%E6%96%B7%E5%AD%97%E4%B8%B2%E6%98%AF%E5%90%A6%E5%9B%9E%E6%96%87"><span class="toc-text">9. 判斷字串是否回文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%AD%90%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="toc-text">10. 子串匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%88%A4%E6%96%B7%E9%8F%88%E8%A1%A8-B-%E6%98%AF%E5%90%A6%E7%82%BA%E9%8F%88%E8%A1%A8-A-%E7%9A%84%E9%80%A3%E7%BA%8C%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">11. 判斷鏈表 B 是否為鏈表 A 的連續子序列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%B9-2"><span class="toc-text">樹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%88%E5%BA%8F%E3%80%81%E4%B8%AD%E5%BA%8F%E3%80%81%E5%BE%8C%E5%BA%8F%E9%81%9E%E6%AD%B8%E9%81%8D%E6%AD%B7%E4%BA%8C%E5%8F%89%E6%A8%B9"><span class="toc-text">1. 先序、中序、後序遞歸遍歷二叉樹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A8%88%E7%AE%97%E4%BA%8C%E5%8F%89%E6%A8%B9%E7%B5%90%E9%BB%9E%E5%80%8B%E6%95%B8"><span class="toc-text">2. 計算二叉樹結點個數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%A8%88%E7%AE%97%E8%91%89%E5%AD%90%E7%B5%90%E9%BB%9E%E5%80%8B%E6%95%B8"><span class="toc-text">3. 計算葉子結點個數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B1%82%E5%80%BC%E7%82%BA-x-%E7%9A%84%E5%B1%A4%E8%99%9F"><span class="toc-text">4. 求值為 x 的層號</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%A8%88%E7%AE%97%E4%BA%8C%E5%8F%89%E6%A8%B9%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="toc-text">5. 計算二叉樹最大深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%89%BE%E5%87%BA%E5%80%BC%E6%9C%80%E5%A4%A7%E7%9A%84%E7%B5%90%E9%BB%9E"><span class="toc-text">6. 找出值最大的結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9F%A5%E6%89%BE-data-%E5%9F%9F%E7%AD%89%E6%96%BC-key-%E7%9A%84%E7%B5%90%E9%BB%9E"><span class="toc-text">7. 查找 data 域等於 key 的結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E8%BC%B8%E5%87%BA%E5%85%88%E5%BA%8F%E7%AC%AC-k-%E5%80%8B%E7%B5%90%E9%BB%9E"><span class="toc-text">8. 輸出先序第 k 個結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%B7%A6%E5%8F%B3%E5%AD%90%E6%A8%B9%E4%BA%A4%E6%8F%9B"><span class="toc-text">9. 左右子樹交換</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%88%A4%E6%96%B7%E6%98%AF%E5%90%A6%E6%AD%A3%E5%89%87%E4%BA%8C%E5%8F%89%E6%A8%B9"><span class="toc-text">10. 判斷是否正則二叉樹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%85%88%E5%BA%8F%E9%9D%9E%E9%81%9E%E6%AD%B8%E9%81%8D%E6%AD%B7"><span class="toc-text">11. 先序非遞歸遍歷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E4%B8%AD%E5%BA%8F%E9%9D%9E%E9%81%9E%E6%AD%B8%E9%81%8D%E6%AD%B7"><span class="toc-text">12. 中序非遞歸遍歷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E5%BE%8C%E5%BA%8F%E9%9D%9E%E9%81%9E%E6%AD%B8%E9%81%8D%E6%AD%B7"><span class="toc-text">13. 後序非遞歸遍歷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E5%B1%A4%E6%AC%A1%E9%81%8D%E6%AD%B7"><span class="toc-text">14. 層次遍歷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%96-2"><span class="toc-text">圖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%84%B0%E6%8E%A5%E8%A1%A8%E8%88%87%E9%84%B0%E6%8E%A5%E7%9F%A9%E9%99%A3%E5%89%B5%E5%BB%BA%E5%9C%96"><span class="toc-text">1. 鄰接表與鄰接矩陣創建圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%84%B0%E6%8E%A5%E8%A1%A8%E5%AF%A6%E7%8F%BE-BFS"><span class="toc-text">2. 鄰接表實現 BFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%84%B0%E6%8E%A5%E7%9F%A9%E9%99%A3%E5%AF%A6%E7%8F%BE-BFS"><span class="toc-text">3. 鄰接矩陣實現 BFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B1%82%E8%B7%9D%E9%9B%A2%E9%A0%82%E9%BB%9E-v-%E6%9C%80%E9%81%A0%E7%9A%84%E7%B5%90%E9%BB%9E"><span class="toc-text">4. 求距離頂點 v 最遠的結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%84%B0%E6%8E%A5%E8%A1%A8%E5%AF%A6%E7%8F%BE-DFS"><span class="toc-text">5. 鄰接表實現 DFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%84%B0%E6%8E%A5%E7%9F%A9%E9%99%A3%E5%AF%A6%E7%8F%BE-DFS"><span class="toc-text">6. 鄰接矩陣實現 DFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%88%A4%E6%96%B7-Vi-%E5%88%B0-Vj-%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E8%B7%AF%E5%BE%91"><span class="toc-text">7. 判斷 Vi 到 Vj 是否存在路徑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E8%BC%B8%E5%87%BA%E6%89%80%E6%9C%89%E6%A0%B9%E7%B5%90%E9%BB%9E"><span class="toc-text">8. 輸出所有根結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E6%B1%82%E7%84%A1%E5%90%91%E5%9C%96%E9%80%A3%E9%80%9A%E5%88%86%E9%87%8F%E5%80%8B%E6%95%B8"><span class="toc-text">9. 求無向圖連通分量個數</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE-2"><span class="toc-text">查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text">1. 二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A4%E6%96%B7%E6%98%AF%E5%90%A6%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A8%B9"><span class="toc-text">2. 判斷是否二叉排序樹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B0%8B%E6%89%BE%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E7%B5%90%E9%BB%9E"><span class="toc-text">3. 尋找最大最小結點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B1%82%E5%80%BC%E7%82%BA-key-%E7%9A%84%E5%B1%A4%E6%AC%A1"><span class="toc-text">4. 求值為 key 的層次</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F-2"><span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-text">1. 直接插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-text">2. 折半插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%81%B8%E6%93%87%E6%8E%92%E5%BA%8F"><span class="toc-text">3. 選擇排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-text">4. 冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">5. 快速排序</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fas fa-map"></i><span>最近發佈</span></div><div class="aside-list"><a class="aside-list-item" href="/course-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85/" title="Hexo博客暨Solitude配置注意事項"><div class="thumbnail"><img alt="Hexo博客暨Solitude配置注意事項" src="/img/default.avif"></div><div class="content"><span class="title" href="/course-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85/" title="Hexo博客暨Solitude配置注意事項">Hexo博客暨Solitude配置注意事項</span></div></a><a class="aside-list-item" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/" title="2026考研数据结构代码题 - 基础 63 题（带注释版）"><div class="thumbnail"><img alt="2026考研数据结构代码题 - 基础 63 题（带注释版）" src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png"></div><div class="content"><span class="title" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/" title="2026考研数据结构代码题 - 基础 63 题（带注释版）">2026考研数据结构代码题 - 基础 63 题（带注释版）</span><span class="categories" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B/">study</span></div></a><a class="aside-list-item" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/" title="2026考研数据结构代码题 - 基础 63 题（带注释版）"><div class="thumbnail"><img alt="2026考研数据结构代码题 - 基础 63 题（带注释版）" src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241106547.png"></div><div class="content"><span class="title" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/" title="2026考研数据结构代码题 - 基础 63 题（带注释版）">2026考研数据结构代码题 - 基础 63 题（带注释版）</span><span class="categories" href="/study-%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B%E4%BB%A3%E7%A2%BC/">study</span></div></a><a class="aside-list-item" href="/Hexo-%E5%BB%BA%E7%AB%99%E6%AD%B7%E7%A8%8B/" title="Hexo建站歷程(hexo &amp;&amp; Solitude)"><div class="thumbnail"><img alt="Hexo建站歷程(hexo &amp;&amp; Solitude)" src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509232306694.png"></div><div class="content"><span class="title" href="/Hexo-%E5%BB%BA%E7%AB%99%E6%AD%B7%E7%A8%8B/" title="Hexo建站歷程(hexo &amp;&amp; Solitude)">Hexo建站歷程(hexo &amp;&amp; Solitude)</span><span class="categories" href="/Hexo-%E5%BB%BA%E7%AB%99%E6%AD%B7%E7%A8%8B/">study</span></div></a><a class="aside-list-item" href="/study-c/" title="C语言基础"><div class="thumbnail"><img alt="C语言基础" src="https://cdn.jsdelivr.net/gh/Hub-wen/blogimage@main/img/202509241116276.png"></div><div class="content"><span class="title" href="/study-c/" title="C语言基础">C语言基础</span><span class="categories" href="/study-c/">study</span></div></a></div></div></div></div></main><footer id="footer"><div id="st-footer-bar"><div class="footer-logo"><span>Aldebaran</span></div><div class="footer-bar-description">文章来自于Aldebaran</div><div><a class="footer-bar-link" href="/about/" title="瞭解更多">瞭解更多</a></div></div><div id="footer_deal"><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Hub-wen" title="Github"><i class="solitude  fab fa-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/7930516451" title="weibo"><i class="solitude  fab fa-weibo"></i></a><div><div class="nolazyload footer_mini_logo" id="footer_mini_logo" title="返回頂部" onclick="sco.toTop()"><img src= "" data-lazy-src="/img/mine/头像.jpg" alt="返回頂部"></div></div><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/694124492" title="Bilibili"><i class="solitude  fab fa-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/iJsLc8jt/" title="Douyin"><i class="solitude  fab fa-tiktok"></i></a></div><div><div id="st-footer"><div class="footer-group"><h3 class="footer-title">導航</h3><div class="footer-links"><a class="footer-item" href="/archives/" title="歸檔">歸檔</a><a class="footer-item" href="/categories/" title="分頁">分頁</a><a class="footer-item" href="/tags/" title="標簽">標簽</a></div></div><div class="footer-group"><h3 class="footer-title">排列</h3><div class="footer-links"><a class="footer-item" href="/cookies/" title="Cookies">Cookies</a><a class="footer-item" href="/privacy/" title="Privacy">Privacy</a><a class="footer-item" href="/copyright/" title="Copyright">Copyright</a></div></div><div class="footer-group"><div class="footer-title-group"><h3 class="footer-title">友鏈</h3><button class="random-friends-btn" onclick="randomLinksList()" title="友鏈"><i class="solitude fas fa-arrows-rotate"></i></button></div><div class="footer-links" id="friend-links-in-footer"> </div></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2025 By<a class="footer-bar-link" href="/" title="靜燃">靜燃</a></div><div class="beian-group"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://hexo.io/" title="框架：Hexo">框架：Hexo</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" title="主題：Solitude">主題：Solitude</a></div></div><div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://hexo.io/index.html" title="">框架</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" title="">主题</a><a class="footer-bar-link" href="/atom.xml" title="">RSS</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude/blob/main/LICENSE" title=""><i class="solitude fas fa-copyright"></i><i class="solitude fab fa-creative-commons-by"></i><i class="solitude fab fa-creative-commons-nc"></i><i class="solitude fab fa-creative-commons-nd"></i></a></div></div></div></div><div><div class="comment-barrage needEndHide"></div></div></footer></div><div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude fas fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude fas fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude fas fa-arrows-rotate"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude fas fa-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude fas fa-clone"></i><span>複製選中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude fas fa-clipboard"></i><span>貼上文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude fas fa-comment-medical"></i><span>引用到評論</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude far fa-window-maximize"></i><span>新窗口打開</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude fas fa-link"></i><span>複製鏈結位址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude fas fa-clone"></i><span>複製此圖片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude fas fa-cloud-arrow-down"></i><span>下載此圖片</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="solitude fas fa-play"></i><span>播放音樂</span></div><div class="rightMenu-item" id="menu-music-back"><i class="solitude fas fa-backward"></i><span>切換到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="solitude fas fa-forward"></i><span>切換到下一首</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="solitude fas fa-clone"></i><span>複製歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-randomPost" onclick="toRandomPost()||rm.hideRightMenu()"><i class="solitude fas fa-tower-broadcast"></i><span>随机文章</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('/categories/')||rm.hideRightMenu()"><i class="solitude fas fa-clone"></i><span>全部分类</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('/tags/')||rm.hideRightMenu()"><i class="solitude fas fa-tags"></i><span>全部标签</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-commentBarrage" onclick="sco.switchCommentBarrage()"><i class="solitude fas fa-comment"></i><span class="menu-commentBarrage-text">關閉熱評</span></div><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></div><div class="rightMenu-item" id="menu-translate"><i class="solitude fas fa-language"></i><span>转为简体</span></div></div></div><div id="rightmenu-mask"></div></div><div><!-- Critical scripts loaded synchronously--><script src="/js/utils.js?v=3.0.20"></script><script src="/js/main.js?v=3.0.20"></script><!-- Non-critical scripts loaded asynchronously--><script async src="/js/third_party/waterfall.min.js?v=3.0.20"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><!-- Feature-specific scripts loaded asynchronously--><script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js"></script><script defer src="/js/third_party/universe.min.js?v=3.0.20"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  if (typeof dark === 'function') dark();
+});
+</script><script defer src="/js/tw_cn.js?v=3.0.20"></script><!-- UI enhancement scripts--><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script><script defer src="/js/post_ai.js?v=3.0.20"></script><!-- Music player scripts--><script>var meting_api = 'https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r';</script><script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script><!-- Cover color processing scripts--><script defer src="https://cdn.jsdelivr.net/npm/colorthief@2.6.0/dist/color-thief.min.js"></script><script defer src="/js/covercolor/local.js?v=3.0.20"></script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+utils.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+</script><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- Search functionality--><!-- Right menu functionality--><script defer src="/js/right_menu.js?v=3.0.20"></script><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="themes\solitude\source\js\card-welcome.js"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://twikoo.aldebaran.cc/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://twikoo.aldebaran.cc/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+         && getCount()
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        true && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script><script>async function barrageTwikoo() {
+    await fetch("https://twikoo.aldebaran.cc/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event: "COMMENT_GET",
+            accessToken: "",
+            url: window.location.pathname
+        })
+    }).then(async res => {
+        if (!res.ok) throw new Error("HTTP error! status: " + res.status)
+        const data = await res.json();
+        const init = () => {
+            initializeCommentBarrage((data.data).map(item => Object.assign({
+                content: item.comment,
+                nick: item.nick,
+                mailMd5: item.mailMd5,
+                id: item.id
+            })))
+        }
+        if (typeof initializeCommentBarrage === "undefined") await utils.getScript('/js/third_party/barrage.min.js?v=3.0.20').then(init)
+        else init()
+    }).catch(error => console.error("An error occurred while fetching comments: ", error))
+}</script><script>mermaid.run();
+</script></div></div><script>const links = [{"name":"Hexo","link":"https://hexo.io/zh-cn/"},{"name":"张洪Heo","link":"https://blog.zhheo.com/"},{"name":"Solitude","link":"https://solitude.js.org/"},{"name":"张洪Heo","link":"https://blog.zhheo.com/"},{"name":"❖星港◎Star☆","link":"https://blog.starsharbor.com"},{"name":"Mo的记事簿","link":"https://blog.xiowo.net/"},{"name":"新锐博客","link":"https://www.xrbk.cn/"},{"name":"青桔氣球","link":"https://blog.qjqq.cn/"},{"name":"免费节点","link":"https://clashgithub.com"},{"name":"gucat","link":"https://www.gucat.vip/"}]
+const randomText = '点击前往按钮进入随机一个友链，不保证跳转网站的安全性和可用性。本次随机到的是本站友链：⌈ ${name} ⌋'
+function travelling() {
+    const link = links[utils.randomNum(links.length)];
+    Snackbar.show({
+        text: randomText.replace(/\$\{name}/,link.name),
+        duration: 8000,
+        pos: 'top-center',
+        actionText: '前往',
+        onActionClick: function(element) {
+            element.style.opacity = 0;
+            window.open(link.link, '_blank');
+        }
+    });
+}
+</script><script>function randomLinksList() {
+    const linkcard = document.getElementById('friend-links-in-footer');
+    if (linkcard == null) return;
+
+    let data = '';
+    let linksCopy = [...links];
+    let count = Math.min(3, linksCopy.length);
+
+    for (let i = 0; i < count; i++) {
+        let index = utils.randomNum(linksCopy.length);
+        const {link, name} = linksCopy[index];
+        data += `<a class="footer-item" href="${link}" target="_blank" rel="noopener noreferrer nofollow">${name}</a>`;
+        linksCopy.splice(index, 1);
+    }
+
+    linkcard.innerHTML = data + '<a class="footer-item" href="/links/">更多</a>';
+}</script><!-- pjax--><script>let pjax = null;
+
+function initPjax() {
+    if (typeof Pjax === 'undefined') {
+        console.warn('Pjax is not loaded yet, retrying...');
+        setTimeout(initPjax, 100);
+        return;
+    }
+
+    pjax = new Pjax({
+        elements: 'a:not([target="_blank"])',
+        selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+        cacheBust: false,
+        analytics: false,
+        scrollRestoration: false
+    })
+
+    // 将 pjax 实例挂载到全局
+    window.pjax = pjax;
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    document.addEventListener('pjax:complete', () => {
+        window.refreshFn()
+
+        document.querySelectorAll('script[data-pjax]').forEach(item => {
+            const newScript = document.createElement('script')
+            const content = item.text || item.textContent || item.innerHTML || ""
+            Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+            newScript.appendChild(document.createTextNode(content))
+            item.parentNode.replaceChild(newScript, item)
+        })
+
+        GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+    })
+
+    document.addEventListener('pjax:error', (e) => {
+        if (e.request.status === 404) {
+            pjax.loadUrl('/404.html')
+        }
+    })
+}
+
+// 初始化 Pjax
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPjax);
+} else {
+    initPjax();
+}</script><!-- google adsense--><div><div class="needEndHide" id="nav-music"><div id="nav-music-hoverTips"><i class="music-control-btn fas fa-backward-step" id="music-prev" onclick="sco.musicSkipBack()"></i><i class="music-control-btn fas fa-pause" id="music-pause" onclick="sco.musicToggle()"></i><i class="music-control-btn fas fa-play" id="music-play" onclick="sco.musicToggle()"></i><i class="music-control-btn fas fa-forward-step" id="music-next" onclick="sco.musicSkipForward()"></i></div><meting-js id="5144842535" server="netease" type="playlist" mutex="true" preload="none" theme="var(--efu-main)" data-lrctype="0" order="random" volume="0.8"></meting-js></div></div></body></html>
+        <script>
+            const posts = ["course-注意事項/","study-數據結構/","study-數據結構代碼/","Hexo-建站歷程/","study-c/","Hexo-建站历程2024/","Hexo-hexo启航/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>
